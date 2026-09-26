@@ -1,0 +1,506 @@
+/* ComicCraft Modern Comic Book Aesthetic Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Outfit:wght@300;400;500;600;700;800;900&family=Permanent+Marker&family=Space+Grotesk:wght@400;600;700&display=swap');
+
+:root {
+  --primary: #ff4757;
+  --primary-hover: #ff6b81;
+  --primary-glow: rgba(255, 71, 87, 0.4);
+  --secondary: #ffa502;
+  --accent: #2ed573;
+  --dark-bg: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.92);
+  --card-border: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-highlight: #feca57;
+  --comic-yellow: #feca57;
+  --comic-cyan: #48dbfb;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shadow-comic: 6px 6px 0px #000000;
+  --shadow-comic-sm: 3px 3px 0px #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--dark-bg);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(255, 71, 87, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(46, 213, 115, 0.1) 0%, transparent 45%),
+    linear-gradient(180deg, #0b0f19 0%, #1e293b 100%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header & Navigation */
+header {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid #334155;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px var(--primary-glow));
+}
+
+.logo-text {
+  font-family: 'Bangers', cursive;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 2px 2px 0px #ff4757, 4px 4px 0px #000;
+}
+
+.badge-tag {
+  background: linear-gradient(135deg, #ff4757, #ffa502);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Main Container */
+main {
+  flex: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.hero-title {
+  font-family: 'Bangers', cursive;
+  font-size: 3.5rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 3px 3px 0px #000000, 5px 5px 0px #ff4757;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Card Wrapper */
+.comic-card {
+  background: var(--card-bg);
+  border: 3px solid #000;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-comic);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.comic-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #ff4757, #ffa502, #2ed573, #1e90ff);
+}
+
+/* Form Styles */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-full {
+  grid-column: 1 / -1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--comic-yellow);
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  background: #0f172a;
+  border: 2px solid #334155;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.25s ease;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+  background: #1e293b;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Comic Button */
+.btn-comic {
+  font-family: 'Bangers', cursive;
+  font-size: 1.4rem;
+  letter-spacing: 1.5px;
+  padding: 0.9rem 2.2rem;
+  background: linear-gradient(135deg, #ff4757, #ee5253);
+  color: #ffffff;
+  border: 3px solid #000;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-comic-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-comic:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #000;
+  background: linear-gradient(135deg, #ff6b81, #ff4757);
+}
+
+.btn-comic:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #000;
+}
+
+.btn-comic.btn-success {
+  background: linear-gradient(135deg, #2ed573, #10ac84);
+}
+
+.btn-comic.btn-secondary {
+  background: linear-gradient(135deg, #3742fa, #2f3542);
+}
+
+/* Comic Preview Page Layout */
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  background: var(--card-bg);
+  border: 3px solid #000;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-comic);
+  padding: 1.5rem 2rem;
+}
+
+.preview-title {
+  font-family: 'Bangers', cursive;
+  font-size: 2.4rem;
+  letter-spacing: 1.5px;
+  color: var(--comic-yellow);
+  text-shadow: 2px 2px 0px #000;
+}
+
+.meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.meta-pill {
+  background: #1e293b;
+  border: 1px solid #475569;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+/* Comic Strip Panels */
+.panels-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.comic-panel-box {
+  background: var(--card-bg);
+  border: 3px solid #000;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-comic);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  transition: transform 0.25s ease;
+}
+
+.comic-panel-box:hover {
+  transform: translateY(-4px);
+}
+
+.panel-media {
+  position: relative;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 3px solid #000;
+}
+
+.panel-img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.panel-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #ff4757;
+  color: #fff;
+  font-family: 'Bangers', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  padding: 0.3rem 0.9rem;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0px #000;
+  border-radius: 6px;
+}
+
+.panel-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.panel-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--comic-yellow);
+  margin-bottom: 0.8rem;
+}
+
+.scene-desc {
+  font-style: italic;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+  border-left: 3px solid var(--secondary);
+  padding-left: 0.8rem;
+}
+
+.story-box {
+  background: #0f172a;
+  border: 2px solid #334155;
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.caption-line {
+  color: var(--comic-cyan);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.narration-line {
+  color: #e2e8f0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.dialogue-line {
+  color: #feca57;
+  font-weight: 700;
+  font-size: 1rem;
+  background: rgba(254, 202, 87, 0.1);
+  border-left: 3px solid #feca57;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+
+.prompt-details {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.prompt-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* Success Page */
+.success-card {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 700px;
+  margin: 3rem auto;
+}
+
+.success-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.success-title {
+  font-family: 'Bangers', cursive;
+  font-size: 3.2rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #000;
+  margin-bottom: 1rem;
+}
+
+.success-desc {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* Loading Modal Overlay */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(11, 15, 25, 0.88);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.comic-spinner {
+  width: 70px;
+  height: 70px;
+  border: 6px solid #334155;
+  border-top-color: var(--primary);
+  border-right-color: var(--secondary);
+  border-bottom-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-family: 'Bangers', cursive;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: var(--comic-yellow);
+  text-shadow: 2px 2px 0px #000;
+}
+
+.loading-subtext {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 860px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .comic-panel-box {
+    grid-template-columns: 1fr;
+  }
+  .panel-media {
+    border-right: none;
+    border-bottom: 3px solid #000;
+  }
+  .hero-title {
+    font-size: 2.8rem;
+  }
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComicCraft - AI Comic Story Creator</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💥</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo-brand">
+        <span class="logo-icon">💥</span>
+        <span class="logo-text">COMICCRAFT</span>
+      </a>
+      <span class="badge-tag">Powered by Gemini & Diffusers</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="hero-section">
+      <h1 class="hero-title">CREATE YOUR AI COMIC STORY</h1>
+      <p class="hero-subtitle">Transform your wildest ideas into structured 5-panel comic strips with AI-powered storytelling, character dialogues, and vivid visual art.</p>
+    </div>
+
+    <!-- Input Form Card -->
+    <div class="comic-card">
+      <form id="comicForm" action="/generate" method="POST" onsubmit="showLoading()">
+        
+        <div class="form-grid">
+          <!-- Story Prompt -->
+          <div class="form-group form-full">
+            <label class="form-label" for="prompt">
+              <span>✍️</span> Story Prompt (Your Main Idea)
+            </label>
+            <textarea 
+              id="prompt" 
+              name="prompt" 
+              class="form-textarea" 
+              placeholder="e.g. A brave fox named Felix exploring an enchanted glowing forest in search of the ancient Sun Crystal..." 
+              required>A brave fox exploring an enchanted forest.</textarea>
+          </div>
+
+          <!-- Main Character Name -->
+          <div class="form-group">
+            <label class="form-label" for="character_name">
+              <span>🦊</span> Main Character Name
+            </label>
+            <input 
+              type="text" 
+              id="character_name" 
+              name="character_name" 
+              class="form-input" 
+              placeholder="e.g. Felix, Kira, Captain Nova" 
+              value="Free" 
+              required>
+          </div>
+
+          <!-- Setting -->
+          <div class="form-group">
+            <label class="form-label" for="setting">
+              <span>🌲</span> Setting / Environment
+            </label>
+            <select id="setting" name="setting" class="form-select">
+              <option value="Enchanted Forest" selected>Enchanted Forest</option>
+              <option value="Futuristic Cyberpunk City">Futuristic Cyberpunk City</option>
+              <option value="Deep Space Starship">Deep Space Starship</option>
+              <option value="High School Campus">High School Campus</option>
+              <option value="Ancient Mythological Temple">Ancient Mythological Temple</option>
+              <option value="Underwater Coral Kingdom">Underwater Coral Kingdom</option>
+            </select>
+          </div>
+
+          <!-- Story Tone -->
+          <div class="form-group">
+            <label class="form-label" for="tone">
+              <span>🎭</span> Story Tone
+            </label>
+            <select id="tone" name="tone" class="form-select">
+              <option value="Dramatic" selected>Dramatic & Adventurous</option>
+              <option value="Funny">Funny & Light-hearted</option>
+              <option value="Heroic">Epic & Heroic</option>
+              <option value="Poetic">Poetic & Mystical</option>
+              <option value="Mystery">Suspenseful & Mysterious</option>
+            </select>
+          </div>
+
+          <!-- Art Style -->
+          <div class="form-group">
+            <label class="form-label" for="style">
+              <span>🎨</span> Art Style
+            </label>
+            <select id="style" name="style" class="form-select">
+              <option value="Comic Book" selected>Classic Comic Book (Vibrant & Inked)</option>
+              <option value="Anime">Anime & Manga Style</option>
+              <option value="Realistic">Realistic Cinematic Graphic Novel</option>
+              <option value="Pixel Art">Retro Pixel Art</option>
+              <option value="Vintage Cartoon">Vintage Cartoon</option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-group form-full" style="text-align: center; margin-top: 1rem;">
+            <button type="submit" id="generateBtn" class="btn-comic" style="width: 100%; max-width: 400px; margin: 0 auto;">
+              <span>🚀</span> GENERATE COMIC STRIP
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Loading Screen Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="comic-spinner"></div>
+    <div class="loading-text">CRAFTING YOUR COMIC...</div>
+    <div class="loading-subtext">Gemini Flash is drafting outline ➔ Gemini Pro is writing story ➔ Generating illustrations ➔ Building PDF layout</div>
+  </div>
+
+  <script>
+    function showLoading() {
+      document.getElementById('loadingOverlay').style.display = 'flex';
+      document.getElementById('generateBtn').disabled = true;
+    }
+  </script>
+</body>
+</html>

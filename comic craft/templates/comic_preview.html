@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comic Preview - ComicCraft</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💥</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo-brand">
+        <span class="logo-icon">💥</span>
+        <span class="logo-text">COMICCRAFT</span>
+      </a>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a href="/" class="btn-comic btn-secondary" style="font-size: 1rem; padding: 0.5rem 1.2rem;">
+          <span>✏️</span> New Story
+        </a>
+        <a href="{{ pdf_path }}" download onclick="handleDownload('{{ pdf_path }}')" class="btn-comic btn-success" style="font-size: 1rem; padding: 0.5rem 1.2rem;">
+          <span>📥</span> Download PDF
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Preview Header Banner -->
+    <div class="preview-header">
+      <div>
+        <h1 class="preview-title">📖 YOUR COMIC PREVIEW</h1>
+        <div class="meta-tags">
+          <span class="meta-pill"><strong>Hero:</strong> {{ character_name }}</span>
+          <span class="meta-pill"><strong>Setting:</strong> {{ setting }}</span>
+          <span class="meta-pill"><strong>Tone:</strong> {{ tone }}</span>
+          <span class="meta-pill"><strong>Style:</strong> {{ style }}</span>
+          <span class="meta-pill"><strong>Panels:</strong> {{ layout|length }}</span>
+        </div>
+      </div>
+      <div>
+        <a href="{{ pdf_path }}" id="downloadPdfBtn" download onclick="handleDownload('{{ pdf_path }}')" class="btn-comic btn-success">
+          <span>📥</span> Download Your Comic as PDF
+        </a>
+      </div>
+    </div>
+
+    <!-- Panels Container -->
+    <div class="panels-container">
+      {% for panel in layout %}
+      <div class="comic-panel-box">
+        
+        <!-- Media / Illustration -->
+        <div class="panel-media">
+          <span class="panel-badge">PANEL {{ panel.panel }}</span>
+          <img src="/{{ panel.image_path.lstrip('/') }}" alt="{{ panel.title }}" class="panel-img" loading="lazy">
+        </div>
+
+        <!-- Narrative & Details -->
+        <div class="panel-content">
+          <div>
+            <h2 class="panel-title">Panel {{ panel.panel }}: {{ panel.title }}</h2>
+            
+            {% if panel.scene_description %}
+            <p class="scene-desc">{{ panel.scene_description }}</p>
+            {% endif %}
+
+            <div class="story-box">
+              {% for line in panel.text.splitlines() %}
+                {% if line.strip() %}
+                  {% if 'CAPTION:' in line.upper() %}
+                    <div class="caption-line">{{ line }}</div>
+                  {% elif 'NARRATION:' in line.upper() %}
+                    <div class="narration-line">{{ line }}</div>
+                  {% elif 'DIALOGUE:' in line.upper() or '"' in line %}
+                    <div class="dialogue-line">{{ line }}</div>
+                  {% else %}
+                    <div class="narration-line">{{ line }}</div>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+
+          {% if panel.image_prompt %}
+          <details class="prompt-details">
+            <summary>🎨 Image Prompt Reference</summary>
+            <p style="margin-top: 0.4rem; color: #94a3b8;">{{ panel.image_prompt }}</p>
+          </details>
+          {% endif %}
+        </div>
+
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Bottom Action Bar -->
+    <div style="text-align: center; margin-top: 3rem; margin-bottom: 2rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ pdf_path }}" download onclick="handleDownload('{{ pdf_path }}')" class="btn-comic btn-success" style="font-size: 1.3rem;">
+        <span>📥</span> Download Your Comic as PDF
+      </a>
+      <a href="/" class="btn-comic btn-secondary" style="font-size: 1.3rem;">
+        <span>✨</span> Create Another Comic
+      </a>
+    </div>
+  </main>
+
+  <script>
+    function handleDownload(pdfPath) {
+      // Allow download to initiate, then redirect to export success page
+      setTimeout(function() {
+        window.location.href = '/export-success?pdf_path=' + encodeURIComponent(pdfPath);
+      }, 1200);
+    }
+  </script>
+</body>
+</html>

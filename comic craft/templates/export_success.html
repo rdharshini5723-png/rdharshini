@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Export Success - ComicCraft</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo-brand">
+        <span class="logo-icon">💥</span>
+        <span class="logo-text">COMICCRAFT</span>
+      </a>
+      <span class="badge-tag">Export Complete</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="comic-card success-card">
+      <div class="success-icon">✅</div>
+      <h1 class="success-title">COMIC EXPORTED SUCCESSFULLY!</h1>
+      <p class="success-desc">
+        Your AI-powered comic book has been compiled into a high-quality PDF with full illustrations, character dialogues, and narration.
+        Dive back in and bring another story to life!
+      </p>
+
+      <div class="btn-group">
+        {% if pdf_path %}
+        <a href="{{ pdf_path }}" download class="btn-comic btn-secondary">
+          <span>📥</span> Download PDF Again
+        </a>
+        {% endif %}
+        <a href="/" class="btn-comic btn-comic">
+          <span>✨</span> Go Create Another Comic
+        </a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
